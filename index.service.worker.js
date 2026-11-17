@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1794936843|23778079';
+const CACHE_VERSION = '1794939803|22844556';
 /** @type {string} */
 const CACHE_PREFIX = 'Nexus di Cenere-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
