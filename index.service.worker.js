@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1794948534|24633978';
+const CACHE_VERSION = '1794948654|21030831';
 /** @type {string} */
 const CACHE_PREFIX = 'Nexus di Cenere-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
@@ -69,10 +69,10 @@ function ensureCrossOriginIsolationHeaders(response) {
 async function fetchAndCache(event, cache, isCacheable) {
 	// Use the preloaded response, if it's there
 	/** @type { Response } */
-	let response = await event.preloadResponse;
+	let response = null;   // niente preload: passerebbe dalla cache HTTP con la pagina vecchia
 	if (response == null) {
 		// Or, go over network.
-		response = await self.fetch(event.request.mode === 'navigate' ? event.request : new Request(event.request, { cache: 'no-cache' }));
+		response = await self.fetch(event.request.mode === 'navigate' ? new Request(event.request.url, { cache: 'no-cache', credentials: 'same-origin' }) : new Request(event.request, { cache: 'no-cache' }));
 	}
 
 	if (ENSURE_CROSSORIGIN_ISOLATION_HEADERS) {
